@@ -4,10 +4,6 @@ Root following the cursor can be very satisfying
 */
 
 /*
-Implement notions of margin and centering
-*/
-
-/*
 Populate the tree with the data of an image
 */
 
