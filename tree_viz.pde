@@ -9,14 +9,14 @@ int actualWidth, actualHeight;
 int maxItem = 1000;
 
 void setup() {
-  //size(1000,1000);
-  fullScreen();
+  size(3000,6000);
+  //fullScreen();
   actualWidth = width - marginLeft - marginRight;;
   actualHeight = height - marginTop - marginBottom;
   background(0);
   tree = new Tree();
   
-  for(int i = 0; i < 500; i ++) {
+  for(int i = 0; i < 50000; i ++) {
     tree.insert(int(random(0, maxItem)));
   }
   tree.drawTree(tree.root, 3);
@@ -28,12 +28,14 @@ void setup() {
   println(tree.treeHeight);
   println(tree.maxOccurrence);
   */
+  save("out.jpg");
 }
 
-
+/*
 void draw() {
   tree.insert(int(random(0, maxItem)));
   background(0);
   tree.drawTree(tree.root, 3);
   //delay(10);
 }
+*/
