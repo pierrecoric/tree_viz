@@ -50,6 +50,17 @@ class Tree {
   }
   //////////End of insert function.
   
+  void insertImage(PImage src, boolean r, boolean g, boolean b) {
+    for(int y = 0; y < src.height; y ++) {
+      for(int x = 0; x < src.width; x++) {
+        PImage zone = src.get(x,y,1,1);
+        int value = getValue(zone, r, g, b);
+        root = recursiveInsert(value, root, 0);
+      }
+    }
+  }
+  
+  
   //InOrderTraversal
   void inOrderTraversal(TreeNode node) {
      if(node != null) {
@@ -68,8 +79,10 @@ class Tree {
        drawTree(node.left, nodeSize);
        float posX = (gapX * node.val) + marginLeft;
        float posY = (gapY * node.depth) + marginTop;
-       fill(map(node.occurrence, 1, maxOccurrence, 50, 255));
-       stroke(map(node.occurrence, 1, maxOccurrence, 100, 255));
+       //fill(map(node.occurrence, 1, maxOccurrence, 50, 255));
+       //stroke(map(node.occurrence, 1, maxOccurrence, 100, 255));
+       fill(255);
+       stroke(255);
        //Draw left node line.
        if(node.left != null) {
          line(posX, 
@@ -92,5 +105,57 @@ class Tree {
       }
     }
   //////////End of the function to draw the tree.
+  
+  //Function to draw the tree.
+  void drawPixelTree(TreeNode node, int nodeSize, boolean r, boolean g, boolean b) {
+    float gapX = float(actualWidth) / float(maxItem);
+    float gapY = float(actualHeight) / float(treeHeight);
+     if(node != null) {
+       drawPixelTree(node.left, nodeSize, r, b, b);
+       float posX = (gapX * node.val) + marginLeft;
+       float posY = (gapY * node.depth) + marginTop;
+       //fill(map(node.occurrence, 1, maxOccurrence, 50, 255));
+       //stroke(map(node.occurrence, 1, maxOccurrence, 100, 255));
+       if(r && g && b) {
+         fill(node.val);
+         stroke(node.val);
+       }
+       else if (r) {
+         fill(node.val, 0, 0);
+         stroke(node.val, 0, 0);
+       }
+       else if (g) {
+         fill(0, node.val, 0);
+         stroke(0, node.val, 0);
+       }
+       else if (b) {
+         fill(0, 0, node.val);
+         stroke(0, 0, node.val);
+       }
+       //Draw left node line.
+       if(node.left != null) {
+         line(posX, 
+              posY, 
+              float(node.left.val) * gapX + marginRight, 
+              float(node.left.depth) * gapY + marginTop);
+       }
+       //Draw right node line
+       if(node.right != null) {
+         line(posX, 
+              posY, 
+              float(node.right.val) * gapX + marginRight, 
+              float(node.right.depth) * gapY + marginTop);
+       }
+       int circleSize = int(map(node.occurrence, 1, maxOccurrence, 1, nodeSize));
+       circle(posX, 
+              posY, 
+              circleSize);
+       println(circleSize);
+       drawPixelTree(node.right, nodeSize, r, g, b);
+      }
+    }
+  //////////End of the function to draw the tree.
+  
+  
 }
 //////////End of tree

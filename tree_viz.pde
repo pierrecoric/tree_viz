@@ -1,34 +1,41 @@
 Tree tree;
 
+
+
 int marginTop = 50;
 int marginBottom = 50 ;
 int marginLeft = 50;
 int marginRight = marginLeft;
 int actualWidth, actualHeight;
 
-int maxItem = 1000;
+int maxItem = 3000;
+
+PImage source;
 
 void setup() {
-  size(3000,6000);
+  size(10000,5000);
+  //source = loadImage("src3.jpg");
   //fullScreen();
   actualWidth = width - marginLeft - marginRight;;
   actualHeight = height - marginTop - marginBottom;
   background(0);
   tree = new Tree();
   
-  for(int i = 0; i < 50000; i ++) {
+  
+  for(int i = 0; i < 3000; i ++) {
     tree.insert(int(random(0, maxItem)));
   }
-  tree.drawTree(tree.root, 3);
-  //drawmargins();
-  
-  /*
+  tree.drawTree(tree.root, 10);
   //Some infos
-  tree.inOrderTraversal(tree.root);
-  println(tree.treeHeight);
-  println(tree.maxOccurrence);
-  */
-  save("out.jpg");
+  //tree.inOrderTraversal(tree.root);
+  //println(tree.treeHeight);
+  //println(tree.maxOccurrence);
+  
+  
+  //imageTrees(source, 10);
+  
+  save("out5.jpg");
+  exit();
 }
 
 /*
